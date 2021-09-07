@@ -74,6 +74,16 @@
   <div class="article-inner">
     
     
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/09/07/js%E7%AC%94%E8%AE%B0/">JS笔记</a>
+    </h1>
+  
+
+      </header>
+    
     <div class="article-entry" itemprop="articleBody">
       
         <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"> for in遍历的是数组的索引（即键名），而for of遍历的是数组元素值。</span><br><span class="line"> let arr = [1,2,3,4,5,6,7]</span><br><span class="line">  for(let index of arr)&#123;</span><br><span class="line">   //  console.log(index)//1 2 3 4 5 6 7  </span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  for(let index in arr)&#123;</span><br><span class="line">    // console.log(index)//0 1 2 3 4 5 6</span><br><span class="line">    //console.log(arr)//1 2 3 4 5 6 7</span><br><span class="line">    //console.log(arr[index])</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  **//遍历对象 通常用for in来遍历对象的键名**</span><br><span class="line"></span><br><span class="line">  let obj = &#123;</span><br><span class="line">    a:1,</span><br><span class="line">    b:2,</span><br><span class="line">    c:3</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  for(let key in obj)&#123;</span><br><span class="line">    console.log(key)//a b c </span><br><span class="line">    //console.log(obj[key])//1 2 3</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  forEach() 方法对数组的每个元素执行一次提供的函数。</span><br><span class="line">  forEach方法中的function回调有三个参数：</span><br><span class="line">	第一个参数是遍历的数组内容，</span><br><span class="line">	第二个参数是对应的数组索引，可选</span><br><span class="line">	第三个参数是数组本身，可选</span><br><span class="line">	var arr = [1,2,3,4];</span><br><span class="line">	var sum =0;</span><br><span class="line">	arr.forEach(function(value,index,array)&#123;</span><br><span class="line">	 	array[index] == value; //结果为true</span><br><span class="line"> 		sum+=value; </span><br><span class="line">	 &#125;);</span><br><span class="line">	console.log(sum); //结果为 10</span><br><span class="line">	</span><br><span class="line">	flat()方法</span><br><span class="line">	将高维数组转化为地位数组</span><br><span class="line">	</span><br><span class="line"> filter() 方法</span><br><span class="line">该方法创建一个新数组，将所有在过滤函数中返回 true 的数组元素放进一个新数组中并返回。</span><br><span class="line">let words = [&#x27;spray&#x27;, &#x27;limit&#x27;, &#x27;elite&#x27;, &#x27;exuberant&#x27;, &#x27;destruction&#x27;]</span><br><span class="line">let result = words.filter(word =&gt; word.length &gt; 6)</span><br><span class="line">console.log(result) // [ &#x27;exuberant&#x27;, &#x27;destruction&#x27; ]</span><br></pre></td></tr></table></figure>
@@ -247,11 +257,19 @@
   <div class="article-inner">
     
     
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/09/07/css%E7%AC%94%E8%AE%B0/">CSS笔记</a>
+    </h1>
+  
+
+      </header>
+    
     <div class="article-entry" itemprop="articleBody">
       
-        <hr>
-<h1 id="CSS"><a href="#CSS" class="headerlink" title="CSS"></a>CSS</h1><hr>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">transform 	变换属性</span><br><span class="line">transform: translate(12px, 50%);   移动   x,y</span><br><span class="line">transform: scale(2, 0.5);   缩放  x,y</span><br><span class="line">transform: rotate(10deg);   旋转  deg顺时针旋转角度	turn  圈数</span><br><span class="line">transform: rotate3d(x,y,z,deg);		x,y,z表示旋转围绕的轴，deg角度</span><br></pre></td></tr></table></figure>
+        <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">transform 	变换属性</span><br><span class="line">transform: translate(12px, 50%);   移动   x,y</span><br><span class="line">transform: scale(2, 0.5);   缩放  x,y</span><br><span class="line">transform: rotate(10deg);   旋转  deg顺时针旋转角度	turn  圈数</span><br><span class="line">transform: rotate3d(x,y,z,deg);		x,y,z表示旋转围绕的轴，deg角度</span><br></pre></td></tr></table></figure>
 
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">transition	过渡</span><br><span class="line">transition-property：应用过渡效果的属性		如width</span><br><span class="line">transition-duration：过渡时间	</span><br><span class="line">transition-timing-function：过渡函数		linear匀速  ease慢快慢	ease-out慢结束  cubic-bezier(n,n,n,n)自定义</span><br><span class="line">transition-delay：等待时间</span><br><span class="line">简写：transition：all 0.5 ease-out</span><br></pre></td></tr></table></figure>
 
@@ -318,7 +336,7 @@
       <ul>
         
           <li>
-            <a href="/2021/09/07/js%E7%AC%94%E8%AE%B0/">(no title)</a>
+            <a href="/2021/09/07/js%E7%AC%94%E8%AE%B0/">JS笔记</a>
           </li>
         
           <li>
@@ -326,7 +344,7 @@
           </li>
         
           <li>
-            <a href="/2021/09/07/css%E7%AC%94%E8%AE%B0/">(no title)</a>
+            <a href="/2021/09/07/css%E7%AC%94%E8%AE%B0/">CSS笔记</a>
           </li>
         
       </ul>
