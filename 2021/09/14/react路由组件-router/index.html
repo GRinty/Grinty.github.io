@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+  <meta name="renderer" content="webkit">
+
+  
+  <title>react路由组件--router | Hexo</title>
+
+  <link rel="shortcut icon" href="/images/favicon.png">
+  <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  <meta name="description" content="#React路由组件Router路由组件：监听浏览器地址的变换，使URL与页面保持一致定义一个App组件在根组件中，用来确定路由和组件的关系,App不是路由组件，是用来确定路由和组件的映射 路由组件是每一个页面，需要给路由组件添加一个props泛型RouteComponentProps，用来识别传入的相关props参数 12345678910111213141516171819#映射组件impor">
+<meta property="og:type" content="article">
+<meta property="og:title" content="react路由组件--router">
+<meta property="og:url" content="http://example.com/2021/09/14/react%E8%B7%AF%E7%94%B1%E7%BB%84%E4%BB%B6-router/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="#React路由组件Router路由组件：监听浏览器地址的变换，使URL与页面保持一致定义一个App组件在根组件中，用来确定路由和组件的关系,App不是路由组件，是用来确定路由和组件的映射 路由组件是每一个页面，需要给路由组件添加一个props泛型RouteComponentProps，用来识别传入的相关props参数 12345678910111213141516171819#映射组件impor">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2021-09-14T09:56:01.000Z">
+<meta property="article:modified_time" content="2021-09-14T17:18:22.612Z">
+<meta property="article:author" content="GRinty">
+<meta property="article:tag" content="React">
+<meta name="twitter:card" content="summary">
+
+  <meta name="keywords" content=",React">
+  <meta name="format-detection" content="telephone=no,email=no">
+  <meta name="theme-color" content="#9C27B0">
+
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="application-name" content="Hexo">
+  <meta name="msapplication-starturl" content="http://example.com/2021/09/14/react%E8%B7%AF%E7%94%B1%E7%BB%84%E4%BB%B6-router/">
+  <meta name="msapplication-navbutton-color" content="#9C27B0">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="Hexo">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <link rel="apple-touch-icon" href="/images/favicon.png">
+
+  
+    <link rel="canonical" href="http://example.com/2021/09/14/react%E8%B7%AF%E7%94%B1%E7%BB%84%E4%BB%B6-router/">
+  
+
+  
+  
+
+  
+  
+  
+
+  
+<link rel="stylesheet" href="/css/mdui.css">
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<link rel="stylesheet" href="/custom.css">
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+<body class="mdui-appbar-with-toolbar mdui-theme-primary-indigo mdui-theme-accent-pink">
+  <script>var a=localStorage.getItem("mdui-theme-layout-dark");if(a){document.getElementsByTagName("body")[0].className+=" mdui-theme-layout-dark"};</script>
+  <script>if(window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches){document.getElementsByTagName("body")[0].className+=" mdui-theme-layout-dark"};</script>
+  <script>var a=localStorage.getItem("mdui-drawer-close");if(!a){document.getElementsByTagName("body")[0].className+=" mdui-drawer-body-left"};</script>
+  <header id="header" class="mdui-appbar mdui-appbar-fixed mdui-appbar-scroll-hide mdui-appbar-inset">
+  <div class="mdui-toolbar mdui-color-theme">
+    <a href="javascript:;" class="mdui-btn mdui-btn-icon" mdui-drawer="{target: '#sidebar', swipe: true}"><i class="mdui-icon material-icons">menu</i></a>
+    <a href="/" class="mdui-typo-headline">Hexo</a>
+    <div class="mdui-toolbar-spacer"></div>
+    <a href="javascript:;" class="mdui-btn mdui-btn-icon" mdui-dialog="{target: '#search'}" mdui-tooltip="{content: 'Search'}"><i class="mdui-icon material-icons">search</i></a>
+    <a href="/atom.xml" class="mdui-btn mdui-btn-icon" mdui-tooltip="{content: 'RSS'}"><i class="mdui-icon material-icons">rss_feed</i></a>
+  </div>
+</header>
+<div class="mdui-dialog" id="search">
+  
+    <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="请输入关键字"><input type="hidden" name="sitesearch" value="http://example.com"></form>
+    <div class="search-result"></div>
+  
+</div>
+  <aside id="sidebar" class="mdui-drawer mdui-drawer-full-height">
+  <script>var a=localStorage.getItem("mdui-drawer-close");if(a){document.getElementById("sidebar").className+=" mdui-drawer-close"};</script>
+  <div class="mdui-grid-tile">
+    <img src="/images/banner.png" style="height: 160px;">
+    <img src="/images/avatar.png" class="avatar-animation" style="position: absolute; top: 10%; left: 24px; width: 64px; height: 64px; border: 2px solid #fff; border-radius: 50%;">
+    <div class="mdui-grid-tile-actions">
+      <div class="mdui-grid-tile-text">
+        <div class="mdui-grid-tile-title">GRinty</div>
+        <div class="mdui-grid-tile-subtitle"><i class="mdui-icon material-icons">art_track</i></div>
+      </div>
+      
+        <div class="mdui-grid-tile-buttons">
+          <a href="mailto:1609755705@qq.com" class="mdui-btn mdui-btn-icon" mdui-tooltip="{content: '1609755705@qq.com'}"><i class="mdui-icon material-icons">email</i></a>
+        </div>
+      
+    </div>
+  </div>
+
+  <div class="mdui-list" mdui-collapse="{accordion: true}">
+    <a href="/" class="mdui-list-item mdui-ripple">
+      <i class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-blue">home</i>
+      <div class="mdui-list-item-content">Home</div>
+    </a>
+    <div class="mdui-collapse-item">
+      <script>var a=localStorage.getItem("mdui-collapse-item-0");if(a){document.getElementsByClassName("mdui-collapse-item")[0].className+=" mdui-collapse-item-open"};</script>
+      <div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
+        <i class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-deep-orange">archive</i>
+        <div class="mdui-list-item-content">Archive</div>
+        <i class="mdui-collapse-item-arrow mdui-icon material-icons">keyboard_arrow_down</i>
+      </div>
+      <div class="mdui-collapse-item-body mdui-list mdui-list-dense">
+        
+        <a class="mdui-ripple sidebar_archives-link" href="/archives/2021/09/">September 2021<span class="mdui-ripple sidebar_archives-count">6</span></a>
+        
+      </div>
+    </div>
+    <div class="mdui-collapse-item">
+      <script>var a=localStorage.getItem("mdui-collapse-item-1");if(a){document.getElementsByClassName("mdui-collapse-item")[1].className+=" mdui-collapse-item-open"};</script>
+      <div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
+        <i class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-green">class</i>
+        <div class="mdui-list-item-content">Category</div>
+        <i class="mdui-collapse-item-arrow mdui-icon material-icons">keyboard_arrow_down</i>
+      </div>
+      <div class="mdui-collapse-item-body mdui-list mdui-list-dense">
+        
+        <a class="mdui-ripple sidebar_archives-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端<span class="mdui-ripple sidebar_archives-count">5</span></a><a class="mdui-ripple sidebar_archives-link" href="/categories/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/">环境配置<span class="mdui-ripple sidebar_archives-count">1</span></a>
+        
+      </div>
+    </div>
+    <div class="mdui-collapse-item">
+      <script>var a=localStorage.getItem("mdui-collapse-item-2");if(a){document.getElementsByClassName("mdui-collapse-item")[2].className+=" mdui-collapse-item-open"};</script>
+      <div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
+        <i class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-brown">bookmark</i>
+        <div class="mdui-list-item-content">Tag</div>
+        <i class="mdui-collapse-item-arrow mdui-icon material-icons">keyboard_arrow_down</i>
+      </div>
+      <div class="mdui-collapse-item-body mdui-list mdui-list-dense">
+        
+        <a class="mdui-ripple sidebar_archives-link" href="/tags/CSS/" rel="tag">CSS<span class="mdui-ripple sidebar_archives-count">1</span></a><a class="mdui-ripple sidebar_archives-link" href="/tags/JS/" rel="tag">JS<span class="mdui-ripple sidebar_archives-count">2</span></a><a class="mdui-ripple sidebar_archives-link" href="/tags/React/" rel="tag">React<span class="mdui-ripple sidebar_archives-count">2</span></a><a class="mdui-ripple sidebar_archives-link" href="/tags/nginx/" rel="tag">nginx<span class="mdui-ripple sidebar_archives-count">1</span></a>
+        
+      </div>
+    </div>
+    <a href="/about" class="mdui-list-item mdui-ripple">
+      <i class="mdui-list-item-icon mdui-icon material-icons mdui-text-color-purple">person</i>
+      <div class="mdui-list-item-content">About</div>
+    </a>
+  </div>
+
+  <div class="mdui-divider"></div>
+
+  <div class="mdui-list" mdui-collapse="{accordion: true}">
+    
+    <div class="mdui-collapse-item">
+      <script>var a=localStorage.getItem("mdui-collapse-item-3");if(a){document.getElementsByClassName("mdui-collapse-item")[3].className+=" mdui-collapse-item-open"};</script>
+      <div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
+        <div class="mdui-list-item-content">Links</div>
+        <i class="mdui-list-item-icon mdui-icon material-icons">link</i>
+      </div>
+      <div class="mdui-collapse-item-body mdui-list mdui-list-dense">
+        
+        
+          <a href="javascript:;" class="mdui-list-item mdui-p-l-2 mdui-text-color-theme mdui-ripple" style="justify-content: center;">No Links</a>
+        
+      </div>
+    </div>
+  </div>
+</aside>
+  <main id="main" class="mdui-m-t-5 fadeIn animated">
+  
+<link rel="stylesheet" href="https://cdn.bootcss.com/fancybox/3.5.7/jquery.fancybox.min.css">
+
+  <style>#main article .mdui-card-content .center-block{display:block!important;margin-right:auto!important;margin-left:auto!important}</style>
+  <article class="mdui-card mdui-m-b-5">
+    <header class="mdui-card-media">
+      <img src="/images/random/material-1.png" style="max-height: 240px;">
+      <div class="mdui-card-media-covered">
+        <div class="mdui-card-primary">
+          <div class="mdui-card-primary-title">react路由组件--router</div>
+          <div class="mdui-card-primary-subtitle"><i class="iconfont">&#xe697;</i> 2021-09-14 / <i class="iconfont">&#xe601;</i> GRinty</div>
+        </div>
+      </div>
+      <div class="mdui-card-menu">
+        
+          <button class="mdui-btn mdui-btn-icon mdui-text-color-white" mdui-menu="{target: '#qrcode', align: 'right'}"><i class="mdui-icon material-icons">devices</i></button>
+          <ul class="mdui-menu" id="qrcode">
+            
+              <li class="mdui-menu-item"><a class="mdui-text-center mdui-ripple">发送到手机</a></li>
+            
+            <li class="mdui-menu-item" disabled>
+              
+                <img src="https://chart.googleapis.com/chart?cht=qr&chs=246x246&chl=http://example.com/2021/09/14/react%E8%B7%AF%E7%94%B1%E7%BB%84%E4%BB%B6-router/&chld=M|2">
+              
+            </li>
+          </ul>
+        
+        
+          <button class="mdui-btn mdui-btn-icon mdui-text-color-white" mdui-menu="{target: '#share_menu', align: 'right'}"><i class="mdui-icon material-icons">share</i></button>
+          <ul class="mdui-menu" id="share_menu">
+            <li class="mdui-menu-item">
+              <a href="http://service.weibo.com/share/share.php?appkey=&title=react路由组件--router&url=http://example.com/2021/09/14/react%E8%B7%AF%E7%94%B1%E7%BB%84%E4%BB%B6-router/&pic=http://example.com/images/favicon.png&searchPic=false&style=simple" target="_blank" class="mdui-ripple">Share to Weibo</a>
+            </li>
+            <li class="mdui-menu-item">
+              <a href="https://twitter.com/intent/tweet?text=react路由组件--router&url=http://example.com/2021/09/14/react%E8%B7%AF%E7%94%B1%E7%BB%84%E4%BB%B6-router/&via=GRinty" target="_blank" class="mdui-ripple">Share to Twitter</a>
+            </li>
+            <li class="mdui-menu-item">
+              <a href="https://www.facebook.com/sharer/sharer.php?u=http://example.com/2021/09/14/react%E8%B7%AF%E7%94%B1%E7%BB%84%E4%BB%B6-router/" target="_blank" class="mdui-ripple">Share to Facebook</a>
+            </li>
+            <li class="mdui-menu-item">
+              <a href="https://plus.google.com/share?url=http://example.com/2021/09/14/react%E8%B7%AF%E7%94%B1%E7%BB%84%E4%BB%B6-router/" target="_blank" class="mdui-ripple">Share to Google+</a>
+            </li>
+            <li class="mdui-menu-item">
+              <a href="https://www.linkedin.com/shareArticle?mini=true&url=http://example.com/2021/09/14/react%E8%B7%AF%E7%94%B1%E7%BB%84%E4%BB%B6-router/&title=react路由组件--router" target="_blank" class="mdui-ripple">Share to LinkedIn</a>
+            </li>
+            <li class="mdui-menu-item">
+              <a href="http://connect.qq.com/widget/shareqq/index.html?site=Hexo&title=react路由组件--router&pics=http://example.com/images/favicon.png&url=http://example.com/2021/09/14/react%E8%B7%AF%E7%94%B1%E7%BB%84%E4%BB%B6-router/" target="_blank" class="mdui-ripple">Share to QQ</a>
+            </li>
+            <li class="mdui-menu-item">
+              <a href="https://telegram.me/share/url?url=http://example.com/2021/09/14/react%E8%B7%AF%E7%94%B1%E7%BB%84%E4%BB%B6-router/&text=react路由组件--router" target="_blank" class="mdui-ripple">Share to Telegram</a>
+            </li>
+          </ul>
+        
+      </div>
+    </header>
+    <div class="mdui-card-content mdui-typo">
+      <p>#React路由组件<br>Router路由组件：监听浏览器地址的变换，使URL与页面保持一致<br>定义一个App组件在根组件中，用来确定路由和组件的关系,App不是路由组件，是用来确定路由和组件的映射</p>
+<p>路由组件是每一个页面，需要给路由组件添加一个props泛型RouteComponentProps，用来识别传入的相关props参数</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">#映射组件</span><br><span class="line">import * as React from &#x27;react&#x27;</span><br><span class="line">import &#123; BrowserRouter, Switch, Route &#125; from &#x27;react-router-dom&#x27;  //需要安装react-router-dom依赖，并引入其中组件</span><br><span class="line"></span><br><span class="line">import Main from &#x27;../main/main&#x27;</span><br><span class="line">import Goods from &#x27;../goods/goods&#x27;</span><br><span class="line"></span><br><span class="line">export default class App extends React.Component&#123;</span><br><span class="line">  render() &#123;</span><br><span class="line">    return (</span><br><span class="line">      &lt;BrowserRouter&gt;   //用来渲染Router所代表的组件</span><br><span class="line">        &lt;Switch&gt;        //会将匹配到的第一个组件渲染到当前位置</span><br><span class="line">          &lt;Route path=&quot;/&quot; exact component=&#123;Main&#125;&gt;&lt;/Route&gt;       //exact表示精确匹配，如果不加上exact,那么path=&quot;/Goods&quot;将会匹配他自己与path=&quot;/&quot;这两个</span><br><span class="line">          &lt;Route path=&quot;/Goods&quot; component=&#123;Goods&#125;&gt;&lt;/Route&gt;</span><br><span class="line">        &lt;/Switch&gt;</span><br><span class="line">      &lt;/BrowserRouter&gt;</span><br><span class="line">    )</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">#路由组件</span><br><span class="line">import * as React from &#x27;react&#x27;</span><br><span class="line">import * as ReactDOM from &#x27;react-dom&#x27;</span><br><span class="line">import &#123; RouteComponentProps, withRouter &#125; from &#x27;react-router-dom&#x27;</span><br><span class="line"></span><br><span class="line">import Nav from &#x27;../nav/nav&#x27;</span><br><span class="line"></span><br><span class="line">class Main extends React.Component&lt;RouteComponentProps&gt;  &#123;</span><br><span class="line">    render() &#123;</span><br><span class="line">        return (</span><br><span class="line">            &lt;React.Fragment&gt;</span><br><span class="line">                &lt;Nav&gt;&lt;/Nav&gt;</span><br><span class="line">                &lt;h1&gt;12345&lt;/h1&gt;</span><br><span class="line">            &lt;/React.Fragment&gt;</span><br><span class="line">        )</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">export default withRouter(Main)    //路由导航组件，或普通组件使用this.props.history.push(&#x27;/&#x27;)进行跳转时，使用withRouter包裹</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">#路由导航</span><br><span class="line">使用react-router-dom中的Link实现跳转</span><br><span class="line">&lt;Link to=&quot;/Goods&quot;&gt;Goods&lt;/Link&gt;     //普通组件中使用Link不需要withRouter包裹</span><br><span class="line"></span><br><span class="line">##提供了NavLink导航组件实现路由导航</span><br><span class="line">import * as React from &#x27;react&#x27;</span><br><span class="line">import &#123; NavLink, RouteComponentProps, withRouter &#125; from &#x27;react-router-dom&#x27;</span><br><span class="line"></span><br><span class="line">import nav from &#x27;./nav.less&#x27;</span><br><span class="line">class Nav extends React.Component&lt;RouteComponentProps&gt; &#123;</span><br><span class="line"></span><br><span class="line">    render() &#123;</span><br><span class="line">        return (</span><br><span class="line">            &lt;React.Fragment&gt;</span><br><span class="line">                &lt;NavLink to=&quot;/&quot; className=&#123;nav.nav_item&#125; exact activeClassName=&#123;nav.nav_active&#125;&gt;home&lt;/NavLink&gt;     //activeClassName为激活后的类名</span><br><span class="line">                &lt;NavLink to=&quot;/Goods&quot; className=&#123;nav.nav_item&#125; activeClassName=&#123;nav.nav_active&#125;&gt;goods&lt;/NavLink&gt;</span><br><span class="line">                &lt;NavLink to=&quot;/Setting&quot; className=&#123;nav.nav_item&#125; activeClassName=&#123;nav.nav_active&#125;&gt;Setting&lt;/NavLink&gt;</span><br><span class="line">            &lt;/React.Fragment&gt;</span><br><span class="line">        )</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">export default withRouter(Nav)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">#带参数的路由</span><br><span class="line">&lt;Route path=&quot;/Goods/:keyword&quot; component=&#123;Goods&#125;&gt;&lt;/Route&gt;     //在路由表中定义</span><br><span class="line"></span><br><span class="line">&lt;Link to=&#123;&#x27;/Goods&#x27;+&#x27;xxx&#x27;&#125;&gt;goods&lt;/Link&gt; 或 this.props.history.push(&#x27;/Goods/xxx&#x27;)     //进行传值，点击或调用时，会将值传到跳转的页面</span><br><span class="line"></span><br><span class="line">通过this.props.match.params.keyword  获取值</span><br></pre></td></tr></table></figure>
+      
+      <blockquote>
+        
+        <strong>PermaLink: </strong><br><a href="http://example.com/2021/09/14/react%E8%B7%AF%E7%94%B1%E7%BB%84%E4%BB%B6-router/">http://example.com/2021/09/14/react路由组件-router/</a>
+      </blockquote>
+    </div>
+    <footer class="mdui-card-actions">
+      
+        <a class="mdui-ripple article_categories-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a>
+      
+      
+        <a class="mdui-ripple article_tags-link" href="/tags/React/" rel="tag">React</a>
+      
+    </footer>
+    
+  </article>
+  
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+
+  <script>$("#main article .mdui-card-content img.fancybox").on("click",function(e){$.fancybox.open({src:$(this).attr("src")});});</script>
+
+
+  <nav id="paginator">
+    
+    <div class="spacer"></div>
+    
+      <a rel="next" class="extend next" href="/2021/09/13/nginx/">
+        <span class="mdui-p-x-3" mdui-tooltip="{content: 'nginx'}">Next</span>
+        <button aria-label="next" class="mdui-btn mdui-btn-raised mdui-btn-icon mdui-color-theme-accent mdui-ripple"><i class="mdui-icon material-icons">arrow_forward</i></button>
+      </a>
+    
+  </nav>
+
+
+
+</main>
+  <footer id="footer" class="mdui-m-t-5 mdui-p-y-3 mdui-color-theme">
+  <div class="mdui-p-y-0 mdui-text-center">
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      <a href="1609755705" target="_blank" class="mdui-btn mdui-btn-icon mdui-text-color-theme-a100"><i class="mdui-icon iconfont">&#xe651;</i></a>
+    
+    
+  </div>
+  <div class="mdui-p-y-1 mdui-text-center">
+    Copyright &copy; 2021 GRinty<br>
+    Powered by <a href="https://hexo.io/" target="_blank" class="mdui-text-color-theme-accent">Hexo</a>
+    
+  </div>
+</footer>
+  <button id="gotop" class="mdui-fab mdui-fab-fixed mdui-fab-hide mdui-color-theme-accent mdui-ripple"><i class="mdui-icon material-icons">arrow_upward</i></button>
+  
+  
+<script src="/js/mdui.js"></script>
+<script src="/js/script.js"></script>
+
+  
+<script src="/custom.js"></script>
+
+</body>
+</html>
