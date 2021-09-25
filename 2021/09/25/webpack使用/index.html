@@ -12,15 +12,15 @@
 
   <link rel="shortcut icon" href="/images/favicon.png">
   <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
-  <meta name="description" content="webpackhttps:&#x2F;&#x2F;webpack.js.org&#x2F; 上面我们学习了如何通过npm来安装、管理依赖，现在我们来看一下如何使用这些依赖。 npm最早是针对Node.js依赖管理设计的，后来随着 webpack 之类的打包工具的出现，让前端也可以利用npm生态来做模块依赖管理了。 在原生Modules出现之前，前端只能通过一些模拟的方式来实现模块化，webpack 最核心的功能是可以将依赖的模">
+  <meta name="description" content="webpackhttps:&#x2F;&#x2F;webpack.js.org&#x2F; 上面我们学习了如何通过npm来安装、管理依赖，现在我们来看一下如何使用这些依赖。 npm最早是针对Node.js依赖管理设计的，后来随着 webpack 之类的打包工具的出现，让前端也可以利用npm生态来做模块依赖管理了。使用 npm run build 命令进行打包 在原生Modules出现之前，前端只能通过一些模拟的方式来实现模块化">
 <meta property="og:type" content="article">
 <meta property="og:title" content="webpack使用">
 <meta property="og:url" content="http://example.com/2021/09/25/webpack%E4%BD%BF%E7%94%A8/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="webpackhttps:&#x2F;&#x2F;webpack.js.org&#x2F; 上面我们学习了如何通过npm来安装、管理依赖，现在我们来看一下如何使用这些依赖。 npm最早是针对Node.js依赖管理设计的，后来随着 webpack 之类的打包工具的出现，让前端也可以利用npm生态来做模块依赖管理了。 在原生Modules出现之前，前端只能通过一些模拟的方式来实现模块化，webpack 最核心的功能是可以将依赖的模">
+<meta property="og:description" content="webpackhttps:&#x2F;&#x2F;webpack.js.org&#x2F; 上面我们学习了如何通过npm来安装、管理依赖，现在我们来看一下如何使用这些依赖。 npm最早是针对Node.js依赖管理设计的，后来随着 webpack 之类的打包工具的出现，让前端也可以利用npm生态来做模块依赖管理了。使用 npm run build 命令进行打包 在原生Modules出现之前，前端只能通过一些模拟的方式来实现模块化">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2021-09-25T08:31:28.000Z">
-<meta property="article:modified_time" content="2021-09-25T08:32:20.332Z">
+<meta property="article:modified_time" content="2021-09-25T08:51:02.088Z">
 <meta property="article:author" content="GRinty">
 <meta property="article:tag" content="webpack使用">
 <meta name="twitter:card" content="summary">
@@ -170,7 +170,7 @@
   <style>#main article .mdui-card-content .center-block{display:block!important;margin-right:auto!important;margin-left:auto!important}</style>
   <article class="mdui-card mdui-m-b-5">
     <header class="mdui-card-media">
-      <img src="/images/random/material-2.png" style="max-height: 240px;">
+      <img src="/images/random/material-15.png" style="max-height: 240px;">
       <div class="mdui-card-media-covered">
         <div class="mdui-card-primary">
           <div class="mdui-card-primary-title">webpack使用</div>
@@ -222,19 +222,20 @@
     <div class="mdui-card-content mdui-typo">
       <h3 id="webpack"><a href="#webpack" class="headerlink" title="webpack"></a>webpack</h3><p><a target="_blank" rel="noopener" href="https://webpack.js.org/">https://webpack.js.org/</a></p>
 <p>上面我们学习了如何通过npm来安装、管理依赖，现在我们来看一下如何使用这些依赖。</p>
-<p>npm最早是针对Node.js依赖管理设计的，后来随着 webpack 之类的打包工具的出现，让前端也可以利用npm生态来做模块依赖管理了。</p>
+<p>npm最早是针对Node.js依赖管理设计的，后来随着 webpack 之类的打包工具的出现，让前端也可以利用npm生态来做模块依赖管理了。<br>使用 npm run build 命令进行打包</p>
 <p>在原生Modules出现之前，前端只能通过一些模拟的方式来实现模块化，webpack 最核心的功能是可以将依赖的模块代码进行转换，然后合并在一起，这样开发效率、加载效率都会有明显提升，例如我们可以用下面的方式来引用 react</p>
 <p>import * as React from ‘react’<br>有了npm之后，我们import导入的代码就会分为两种情况，一种是npm安装的模块，另外一种就是我们自己本地编写的代码，这两种的引用方式有所不同，对于npm安装的模块，我们引用的时候 from 后面直接写模块名，就像上面的引用 react 的方式</p>
 <p>import * as React from ‘react’<br>import * as ReactDOM from ‘react-dom’<br>对于本地模块代码，就是我们之前熟悉的方式了，通过相对路径的方式来引用，通过 webpack 的配置，我们可以省略掉 .js 或者 .ts 的后缀名，如</p>
 <p>import Button from ‘./components/Button’<br>import Modal from ‘./components/Modal’<br>除了JS代码之外，webpack通过加载器（loader）机制还可以用来处理其他类型的资源，例如图片、CSS、字体等等，还可以通过插件（plugin）机制来自动生成HTML模板、合并输出CSS文件等，我们通过demo的代码来看一下简单的webpack配置，webpack是基于Node.js开发的，它的配置文件就是一个Node.js脚本</p>
 <p>const path = require(‘path’)<br>const HtmlWebpackPlugin = require(‘html-webpack-plugin’)<br>const MiniCssExtractPlugin = require(‘mini-css-extract-plugin’)<br>const { CleanWebpackPlugin } = require(‘clean-webpack-plugin’)</p>
-<p>module.exports = {<br>  entry: {<br>    // 入口模块<br>    index: ‘./src/index.tsx’<br>  },<br>  output: {<br>    // 输出路径<br>    path: path.resolve(‘./dist’),<br>    // 输出的文件名格式，这里采用名字+内容hash片段的方式，用于清理缓存<br>    filename: ‘scripts/[name].[contenthash:6].js’,<br>    // 添加公共路径，主要用于history路由模式下<br>    publicPath: ‘/‘<br>  },<br>  resolve: {<br>    // 支持的脚本后缀名，可以让我们在导入的时候省略掉<br>    extensions: [‘.ts’, ‘.tsx’, ‘.js’]<br>  },<br>  // 模式，development开发环境，production生产环境，会压缩代码<br>  mode: ‘development’,<br>  // 生成sourcemap<br>  devtool: ‘source-map’,<br>  module: {<br>    // 加载器规则<br>    rules: [<br>      {<br>        // 使用ts-loader处理ts|tsx后缀的代码<br>        test: /.(ts|tsx)$/,<br>        exclude: /node_modules/,<br>        loader: ‘ts-loader’<br>      },<br>      {<br>        // 使用MiniCssExtractPlugin.loader、css-loader处理css后缀的代码<br>        test: /.css$/,<br>        use: [MiniCssExtractPlugin.loader, ‘css-loader’]<br>      },<br>      {<br>        // 使用file-loader处理jpg|png|svg|ico格式的文件<br>        test: /.(jpg|png|svg|ico)$/,<br>        loader: ‘file-loader’,<br>        options: {<br>          // 输出的文件名格式<br>          name: ‘imgs/[name].[contenthash:6].[ext]’<br>        }<br>      }<br>    ]<br>  },<br>  plugins: [<br>    // 清理插件，可以在每次编译之前清空dist目录<br>    new CleanWebpackPlugin(),<br>    // 可以将引入的样式合并输出到css文件<br>    new MiniCssExtractPlugin({<br>      filename: ‘styles/[name].[contenthash:6].css’<br>    }),<br>    // 根据模板生成html文件<br>    new HtmlWebpackPlugin({<br>      filename: ‘index.html’,<br>      template: ‘./src/index.html’<br>    })<br>  ]<br>}<br>loader<br><a target="_blank" rel="noopener" href="https://webpack.js.org/loaders/">https://webpack.js.org/loaders/</a></p>
+<p>module.exports = {<br>  entry: {<br>    // 入口模块<br>    index: ‘./src/index.tsx’<br>  },<br>  output: {<br>    // 输出路径<br>    path: path.resolve(‘./dist’),<br>    // 输出的文件名格式，这里采用名字+内容hash片段的方式，用于清理缓存<br>    filename: ‘scripts/[name].[contenthash:6].js’,<br>    // 添加公共路径，主要用于history路由模式下<br>    publicPath: ‘/‘<br>  },<br>  resolve: {<br>    // 支持的脚本后缀名，可以让我们在导入的时候省略掉<br>    extensions: [‘.ts’, ‘.tsx’, ‘.js’]<br>  },<br>  // 模式，development开发环境，production生产环境，会压缩代码<br>  mode: ‘development’,<br>  // 生成sourcemap<br>  devtool: ‘source-map’,<br>  module: {<br>    // 加载器规则<br>    rules: [<br>      {<br>        // 使用ts-loader处理ts|tsx后缀的代码<br>        test: /.(ts|tsx)$/,<br>        exclude: /node_modules/,<br>        loader: ‘ts-loader’<br>      },<br>      {<br>        // 使用MiniCssExtractPlugin.loader、css-loader处理css后缀的代码<br>        test: /.css$/,<br>        use: [MiniCssExtractPlugin.loader, ‘css-loader’]<br>      },<br>      {<br>        // 使用file-loader处理jpg|png|svg|ico格式的文件<br>        test: /.(jpg|png|svg|ico)$/,<br>        loader: ‘file-loader’,<br>        options: {<br>          // 输出的文件名格式<br>          name: ‘imgs/[name].[contenthash:6].[ext]’<br>        }<br>      }<br>    ]<br>  },<br>  plugins: [<br>    // 清理插件，可以在每次编译之前清空dist目录<br>    new CleanWebpackPlugin(),<br>    // 可以将引入的样式合并输出到css文件<br>    new MiniCssExtractPlugin({<br>      filename: ‘styles/[name].[contenthash:6].css’<br>    }),<br>    // 根据模板生成html文件<br>    new HtmlWebpackPlugin({<br>      filename: ‘index.html’,<br>      template: ‘./src/index.html’<br>    })<br>  ]<br>}</p>
+<h1 id="loader"><a href="#loader" class="headerlink" title="loader"></a>loader</h1><p><a target="_blank" rel="noopener" href="https://webpack.js.org/loaders/">https://webpack.js.org/loaders/</a></p>
 <p>在我们的代码中会引用很多不同类型的资源，例如TS、图片、CSS，我们可以像引用JS模块一样来引用他们，例如</p>
 <p>import ‘./style.css’<br>import logo from ‘../imgs/logo.png’<br>import Button from ‘../components/Button.tsx’<br>但是很明显，这几种都不是合法的JS模块，无法被正常执行，这时候就需要webpack的各种loader来帮我们处理这些类型的文件，以上面的代码为例，我们希望import进来的css最终输出成css文件，并且自动插入到html页面中，这里我们用到了两个loader，分别是 MiniCssExtractPlugin.loader 和 css-loader，webpack会从右往左来调用指定的loader，其中 css-loader 可以获得css路径、内容等信息，MiniCssExtractPlugin.loader 可以用来将css内容导出到文件。</p>
 <p>对于图片类型如png，我们使用了 file-loader，webpack在打包代码的时候如果遇到导入png，就会把这个任务交给 file-loader，此时它会按照我们配置的格式，将文件输出到指定位置，并返回新的路径名，上面我们得到的 logo 就是输出之后该图片的路径，这样我们就可以在JSX中插值引用该图片了。</p>
 <p>对于TS代码，我们使用把它交给了 ts-loader 来处理，它会帮我们自动完成TS到JS的编译。</p>
 <p>经过上面几个loader对不同资源的处理，我们得到了可以在浏览器中正常执行的代码。loader也是一个npm模块，需要通过npm来安装</p>
-<p>plugin<br><a target="_blank" rel="noopener" href="https://webpack.js.org/plugins/">https://webpack.js.org/plugins/</a></p>
+<h1 id="plugin"><a href="#plugin" class="headerlink" title="plugin"></a>plugin</h1><p><a target="_blank" rel="noopener" href="https://webpack.js.org/plugins/">https://webpack.js.org/plugins/</a></p>
 <p>loader用来处理不同类型的资源，而plugin可以用来扩展webpack的功能，webpack内置了一些插件，也有很多社区提供的，上面的例子中我们使用了三个插件</p>
 <p>CleanWebpackPlugin：这个插件可以帮助我们清理输出目录，避免混入旧版本的文件<br>MiniCssExtractPlugin：这个插件让我们把导入的css代码合并输出到css文件<br>HtmlWebpackPlugin：这个插件可以根据模板来生成我们的入口html文件，而且会自动把输出的JS、CSS文件引入进来<br>webpack-dev-server<br>webpack-dev-server 是一个小型嵌入式的Web服务器，它可以和webpack配合使用，能够支持静态文件、API代理、自动刷新等功能，通过它我们可以在开发环境给每一个前端工程启动一个独立的http server，方便我们调试，而部署到生产环境的时候再使用Nginx。webpack-dev-server 的配置格式大致如下，可以直接添加到webpack的配置文件：</p>
 <p>devServer: {<br>  // 静态文件目录<br>  contentBase: path.resolve(‘./dist’),<br>  // 自动刷新<br>  hot: true,<br>  // 监听端口<br>  port: 3360,<br>  // 支持history路由模式<br>  historyApiFallback: true,<br>  // API代理<br>  proxy: {<br>    ‘/data’: {<br>      target: ‘<a target="_blank" rel="noopener" href="https://data.example.com&/#39;">https://data.example.com&#39;</a>,<br>      changeOrigin: true<br>    }<br>  }<br>}<br>添加完配置之后，我们可以通过 npm scripts 来定义一个启动服务的命令，如</p>
