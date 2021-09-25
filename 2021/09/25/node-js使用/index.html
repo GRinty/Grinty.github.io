@@ -20,7 +20,7 @@
 <meta property="og:description" content="NodeJS创建一个index.js文件，在里面写入以下代码console.log(“hello world”);在命令行中执行，会打印出hello worldnode index.js直接在命令行中输入node，可以进入Node终端，可以在其中进行简单的表达式计算。类似于浏览器的输出行。练习 编写一个js程序，打印当前的时间。【使用Date对象】 npmNPM是随同NodeJS一起安装的包管理工">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2021-09-25T08:26:14.000Z">
-<meta property="article:modified_time" content="2021-09-25T08:29:44.166Z">
+<meta property="article:modified_time" content="2021-09-25T12:57:23.038Z">
 <meta property="article:author" content="GRinty">
 <meta property="article:tag" content="node.js使用">
 <meta name="twitter:card" content="summary">
@@ -170,7 +170,7 @@
   <style>#main article .mdui-card-content .center-block{display:block!important;margin-right:auto!important;margin-left:auto!important}</style>
   <article class="mdui-card mdui-m-b-5">
     <header class="mdui-card-media">
-      <img src="/images/random/material-1.png" style="max-height: 240px;">
+      <img src="/images/random/material-11.png" style="max-height: 240px;">
       <div class="mdui-card-media-covered">
         <div class="mdui-card-primary">
           <div class="mdui-card-primary-title">node.js使用</div>
@@ -223,7 +223,8 @@
       <p>NodeJS<br>创建一个index.js文件，在里面写入以下代码<br>console.log(“hello world”);<br>在命令行中执行，会打印出hello world<br>node index.js<br>直接在命令行中输入node，可以进入Node终端，可以在其中进行简单的表达式计算。类似于浏览器的输出行。<br>练习</p>
 <p>编写一个js程序，打印当前的时间。【使用Date对象】</p>
 <p>npm<br>NPM是随同NodeJS一起安装的包管理工具，能解决NodeJS代码部署上的很多问题，常见的使用场景有以下几种：</p>
-<p>允许用户从NPM服务器下载别人编写的第三方包到本地使用。<br>允许用户从NPM服务器下载并安装别人编写的命令行程序到本地使用。<br>允许用户将自己编写的包或命令行程序上传到NPM服务器供别人使用。<br>npm -v<br>// 查看版本号<br>npm init<br>// 初始化本地仓库<br>npm install [packageName]<br>// 安装npm的包,将引入的依赖进行安装</p>
+<p>允许用户从NPM服务器下载别人编写的第三方包到本地使用。<br>允许用户从NPM服务器下载并安装别人编写的命令行程序到本地使用。<br>允许用户将自己编写的包或命令行程序上传到NPM服务器供别人使用。<br>npm -v<br>// 查看版本号<br>npm init<br>// 初始化本地仓库<br>npm install [packageName]<br>// 安装npm的包,将引入的依赖进行安装<br>npm update<br>//更新模块<br>npm ls<br>//查看安装的模块</p>
+<p>–save  //生产模块<br>–save-dev   //开发模块<br>-g   //全局</p>
 <p>npm 的工作方式大致如下：</p>
 <p>架设一个中心化的代码仓库服务器（registry），用来存放共享的代码，官方的npm网站为 <a target="_blank" rel="noopener" href="https://www.npmjs.com/%EF%BC%8C%E5%9C%A8%E5%9B%BD%E5%86%85%E6%88%91%E4%BB%AC%E9%80%9A%E5%B8%B8%E4%BC%9A%E4%BD%BF%E7%94%A8%E9%98%BF%E9%87%8C%E7%9A%84">https://www.npmjs.com/，在国内我们通常会使用阿里的</a> npm 镜像，下载速度会更快，切换方式如下</p>
 <p>npm config set registry <a target="_blank" rel="noopener" href="https://registry.npm.taobao.org/">https://registry.npm.taobao.org</a></p>
